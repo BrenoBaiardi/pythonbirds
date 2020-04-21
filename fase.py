@@ -89,6 +89,7 @@ class Fase():
         for passaro in self._passaros:
             if not passaro.foi_lancado():
                 passaro.lancar(angulo,tempo)
+                break
 
 
     def calcular_pontos(self, tempo):
@@ -100,6 +101,12 @@ class Fase():
         :param tempo: tempo para o qual devem ser calculados os pontos
         :return: objeto do tipo Ponto
         """
+
+        for passaro in self._passaros:
+            passaro.calcular_posicao(tempo)
+            for i in self._obstaculos + self._porcos:
+                passaro.colidir(i,self.intervalo_de_colisao)
+
         pontos=[self._transformar_em_ponto(a) for a in self._passaros+self._obstaculos+self._porcos]
 
         return pontos
