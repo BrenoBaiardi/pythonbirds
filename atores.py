@@ -57,11 +57,11 @@ class Ator():
 
 
 class Obstaculo(Ator):
-    pass
+    _caracter_ativo = 'O'
 
 
 class Porco(Ator):
-    pass
+    _caracter_ativo = '@'
 
 
 class DuploLancamentoExcecao(Exception):
@@ -93,6 +93,8 @@ class Passaro(Ator):
 
         :return: booleano
         """
+        if self._tempo_de_lancamento is None:
+            return False
         return True
 
     def colidir_com_chao(self):
@@ -129,12 +131,13 @@ class Passaro(Ator):
         :param tempo_de_lancamento:
         :return:
         """
-        pass
+        self.angulo_de_lancamento = math.radians(angulo)
+        self.tempo_de_lancamento = tempo_de_lancamento
 
 
 class PassaroAmarelo(Passaro):
-    pass
+    _caracter_ativo = 'A'
 
 
 class PassaroVermelho(Passaro):
-    pass
+    _caracter_ativo = 'V'
